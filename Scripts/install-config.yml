@@ -1,0 +1,3 @@
+# directory 作成
+mkdir "%USERPROFILE%\repository\svn"
+winget install -e TortoiseSVN.TortoiseSVN --override "ADDLOCAL=MoreIcons,CLI /qn"
