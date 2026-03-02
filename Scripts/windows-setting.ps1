@@ -1,97 +1,5 @@
-# YAMLファイルからアプリケーションリストを読み込み、インストールするPowerShellスクリプト
 
-# 必要なモジュールの確認とインストール
-function Ensure-Module {
-    param (
-        [string]$ModuleName
-    )
-    
-    if (-not (Get-Module -ListAvailable -Name $ModuleName)) {
-        Write-Host "$ModuleName モジュールがインストールされていません。インストールします..." -ForegroundColor Yellow
-        try {
-            Install-Module -Name $ModuleName -Scope CurrentUser -Force -ErrorAction Stop
-            Write-Host "$ModuleName モジュールのインストールが完了しました。" -ForegroundColor Green
-        }
-        catch {
-            Write-Error "モジュールのインストールに失敗しました: $_"
-            exit 1
-        }
-    }
-}
 
-# PowerShell-YAMLモジュールが必要
-Ensure-Module -ModuleName "powershell-yaml"
-
-# YAMLファイルのパス
-$yamlPath = Join-Path $PSScriptRoot "packages.yml"
-
-# YAMLファイルが存在するか確認
-if (-not (Test-Path $yamlPath)) {
-    # サンプルYAMLの内容
-    $sampleYaml = @"
-packages:
-  - id: Anthropic.Claude
-    scope: User
-    architecture: x64
-  - id: AntibodySoftware.WizTree
-    scope: User
-    architecture: x64
-  - id: Anysphere.Cursor
-    scope: User
-    architecture: x64
-  - id: CoreyButler.NVMforWindows
-    scope: User
-    architecture: x64
-  - id: DeepL.DeepL
-    scope: User
-    architecture: x64
-  - id: DimitriVanHeesch.Doxygen
-    scope: User
-    architecture: x64
-  - id: DevToys-app.DevToys
-    scope: User
-    architecture: x64
-  - id: gerardog.gsudo
-    scope: User
-    architecture: x64
-  - id: Git.Git
-    scope: User
-    architecture: x64
-  - id: Microsoft.PowerShell
-    scope: User
-    architecture: x64
-  - id: Microsoft.PowerToys
-    scope: User
-    architecture: x64
-  - id: Microsoft.WindowsTerminal
-    scope: User
-    architecture: x64
-  - id: OpenJS.NodeJS
-    scope: User
-    architecture: x64
-  - id: Python.Python.3.13
-    scope: User
-    architecture: x64
-  - id: JetBrains.PyCharm.Community
-    scope: User
-    architecture: x64
-  - id: voidtools.Everything
-    scope: User
-    architecture: x64
-  - id: WinMerge.WinMerge
-    scope: User
-    architecture: x64
-  - id: Zoom.Zoom
-    scope: User
-    architecture: x64
-"@
-
-    # YAMLファイルが存在しない場合、サンプルファイルを作成
-    Write-Host "YAMLファイルが見つかりません。サンプルファイルを作成します: $yamlPath" -ForegroundColor Yellow
-    $sampleYaml | Out-File -FilePath $yamlPath -Encoding utf8
-    Write-Host "サンプルYAMLファイルを作成しました。必要に応じて編集してから再実行してください。" -ForegroundColor Green
-    exit 0
-}
 
 # YAMLファイルの読み込み
 try {
@@ -132,13 +40,6 @@ $logPath = Join-Path $PSScriptRoot "winget_install_log_$(Get-Date -Format 'yyyyM
 
 # 各パッケージをインストール
 foreach ($package in $packages) {
-    # idは必須
-    if (-not $package.id) {
-        Write-Host "警告: IDが指定されていないパッケージをスキップします" -ForegroundColor Yellow
-        "スキップ: IDが指定されていないパッケージ" | Out-File -FilePath $logPath -Append
-        $skippedCount++
-        continue
-    }
     
     $id = $package.id
     

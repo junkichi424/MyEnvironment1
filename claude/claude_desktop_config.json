@@ -8,6 +8,15 @@
           },
           "disabled": false,
           "autoApprove": []
+      },
+      "filesystem": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "C:\\Users\\username\\Desktop",
+          "C:\\Users\\username\\Downloads"
+        ]
       }
     }
   }

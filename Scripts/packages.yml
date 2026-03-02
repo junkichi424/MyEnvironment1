@@ -1,0 +1,59 @@
+packages:
+  - id: Anthropic.Claude
+    scope: User
+    architecture: x64
+  - id: AntibodySoftware.WizTree
+    architecture: x64
+  - id: Anysphere.Cursor
+    scope: User
+    architecture: x64
+  - id: CoreyButler.NVMforWindows
+    scope: User
+    architecture: x64
+  - id: DeepL.DeepL
+    scope: User
+    architecture: x64
+  - id: DimitriVanHeesch.Doxygen
+    scope: User
+    architecture: x64
+  - id: DevToys-app.DevToys
+    scope: User
+    architecture: x64
+  - id: gerardog.gsudo
+    scope: User
+    architecture: x64
+  - id: Git.Git
+    scope: User
+    architecture: x64
+  - id: Microsoft.PowerShell
+    scope: User
+    architecture: x64
+  - id: Microsoft.PowerToys
+    scope: User
+    architecture: x64
+  - id: Microsoft.WindowsTerminal
+    scope: User
+    architecture: x64
+  - id: OpenJS.NodeJS
+    architecture: x64
+  - id: Python.Python.3.13
+    scope: User
+    architecture: x64
+  - id: JetBrains.PyCharm.Community
+    scope: User
+    architecture: x64
+  - id: voidtools.Everything
+    scope: User
+    architecture: x64
+  - id: WinMerge.WinMerge
+    scope: User
+    architecture: x64
+  - id: Zoom.Zoom
+    scope: User
+    architecture: x64
+  - id: Amazon.AWSCLI
+    architecture: x64    
+  - id: JGraph.Draw
+    architecture: x64
+  - id: WinAuth.WinAuth
+    architecture: x64
